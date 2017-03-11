@@ -30,6 +30,8 @@ Initial scene Assets/Scenes/start.unity
 
 [SkyScrape by 3DMasen](https://www.assetstore.unity3d.com/en/#!/content/5006)
 
+[Stylized Trees by Tom Poon](https://www.assetstore.unity3d.com/en/#!/content/49916)
+
 [Bulbasaur](https://www.sounds-resource.com/nintendo_64/pokemonpuzzleleague/sound/2565/)
 
 [Pikachu](http://www.soundboard.com/sb/sound/298335)
