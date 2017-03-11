@@ -38,6 +38,11 @@ public class Hook : MonoBehaviour
         // Instantiated Vine
         Rigidbody vine = null;
 
+        if(input.getSecondaryActionPressDown())
+        {
+            vine = Instantiate(vineRigidbody, player.transform);
+        }
+
         // Set the hook on press and hold
         if (!currentHindgeJoint && input.getSecondaryActionHold())
         {
@@ -50,7 +55,6 @@ public class Hook : MonoBehaviour
             //addedHindgeJoin.anchor = offset;
             //addedHindgeJoin.axis = new Vector3(1, 1, 1);
 
-           //vine = Instantiate(vineRigidbody, player.transform);
             //myRidgidbody.GetComponent<FixedJoint>().connectedBody = vine;
             //var vineFixedJoint = vine.GetComponent<FixedJoint>();
             //vineFixedJoint.connectedBody = myRidgidbody;
