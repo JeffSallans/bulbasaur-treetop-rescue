@@ -73,8 +73,6 @@ public class GameFinishedChecker : MonoBehaviour {
     IEnumerator endMatch()
     {
         //Disable abilities
-        gameState.pinkPlayer.gameObject.GetComponent<Smack>().enabled = false;
-        gameState.greenPlayer.gameObject.GetComponent<Smack>().enabled = false;
 
         gameOverText.SetActive(true);
 

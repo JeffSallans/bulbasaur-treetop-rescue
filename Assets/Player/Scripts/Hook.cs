@@ -6,7 +6,7 @@ using System.Collections;
 /// 
 /// See - https://unity3d.com/learn/tutorials/topics/physics/physics-joints
 /// </summary>
-[RequireComponent(typeof(Monkey))]
+[RequireComponent(typeof(PlayerData))]
 [RequireComponent(typeof(Rigidbody))]
 public class Hook : MonoBehaviour
 {
@@ -15,39 +15,51 @@ public class Hook : MonoBehaviour
     /// </summary>
     public Rigidbody hookTarget;
 
-    private Monkey monkey;
+    private PlayerData player;
     private Rigidbody myRidgidbody;
+
+    public Rigidbody vineRigidbody;
 
     // Use this for initialization
     void Start()
     {
         myRidgidbody = gameObject.GetComponent<Rigidbody>();
-        monkey = gameObject.GetComponent<Monkey>();
+        player = gameObject.GetComponent<PlayerData>();
     }
 
     // Update is called once per frame
-    void Update()
+    void FixedUpdate()
     {
         var input = InputManager.getCurrentInputManager()
-            .playerControls[monkey.playerNumber];
+            .playerControls[player.playerNumber];
 
         var currentHindgeJoint = gameObject.GetComponent<HingeJoint>();
+
+        // Instantiated Vine
+        Rigidbody vine = null;
 
         // Set the hook on press and hold
         if (!currentHindgeJoint && input.getSecondaryActionHold())
         {
-            gameObject.AddComponent<HingeJoint>();
+            
+            //gameObject.AddComponent<HingeJoint>();
 
-            var addedHindgeJoin = gameObject.GetComponent<HingeJoint>();
+            //var addedHindgeJoin = gameObject.GetComponent<HingeJoint>();
 
-            var offset = hookTarget.gameObject.transform.position - gameObject.transform.position;
-            addedHindgeJoin.anchor = offset;
-            addedHindgeJoin.axis = new Vector3(1, 1, 1);
+            //var offset = hookTarget.gameObject.transform.position - gameObject.transform.position;
+            //addedHindgeJoin.anchor = offset;
+            //addedHindgeJoin.axis = new Vector3(1, 1, 1);
+
+           //vine = Instantiate(vineRigidbody, player.transform);
+            //myRidgidbody.GetComponent<FixedJoint>().connectedBody = vine;
+            //var vineFixedJoint = vine.GetComponent<FixedJoint>();
+            //vineFixedJoint.connectedBody = myRidgidbody;
         }
         // Remove the hook on keyup
         else if (currentHindgeJoint && !input.getSecondaryActionHold())
         {
             Destroy(currentHindgeJoint);
+            Destroy(vine);
         }
     }
 }

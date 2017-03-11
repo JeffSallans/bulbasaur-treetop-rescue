@@ -1,43 +1,76 @@
-﻿using UnityEngine;
-using System.Collections;
+﻿using System.Collections;
+using System.Collections.Generic;
+using UnityEngine;
 
-/// <summary>
-/// The movement for the player
-/// </summary>
-[RequireComponent(typeof(Player))]
 public class PlayerMovement : MonoBehaviour {
 
-    private Player player;
+    private PlayerData player;
+    private Rigidbody myRidgidbody;
 
     /// <summary>
-    /// Collider that defines the space the player can move
+    /// The y height of the floor
     /// </summary>
-    public BoxCollider2D movableArea;
+    public float minY = 0;
 
-	// Use this for initialization
-	void Start () {
-        player = gameObject.GetComponent<Player>();
-	}
-	
-	// Update is called once per frame
-	void Update () {
+    /// <summary>
+    /// The y height of the ceiling
+    /// </summary>
+    public float maxY = 10;
 
-        var input = InputManager.getCurrentInputManager()
+    /// <summary>
+    /// False if the player is on the ground
+    /// </summary>
+    public bool jump = false;
+    public bool grounded = false;
+    public Transform groundCheck;
+
+    private PlayerInput playerInput;
+
+    /// <summary>
+    /// The force of the jump
+    /// </summary>
+    public float jumpPower;
+
+    // Use this for initialization
+    void Start()
+    {
+        player = gameObject.GetComponent<PlayerData>();
+        myRidgidbody = gameObject.GetComponent<Rigidbody>();
+        playerInput = InputManager.getCurrentInputManager()
             .playerControls[player.playerNumber];
-        
+    }
+
+    // Update is called once per frame
+    void Update()
+    {
+        // Jumping
+        grounded = Physics.Linecast(transform.position, groundCheck.position, 1 << LayerMask.NameToLayer("Ground"));
+
+        if (playerInput.getActionPressDown() && grounded)
+        {
+            jump = true;
+        }
+    }
+    
+    void FixedUpdate()
+    {
+
+        // Movement
         var pos = transform.position;
 
-        pos.x += player.speed * input.getHorizontalAxis();
-        pos.y += player.speed * input.getVerticalAxis();
+        pos.x += player.walkSpeed * playerInput.getHorizontalAxis();
+        pos.z += player.walkSpeed * playerInput.getVerticalAxis();
 
-        var maxX = movableArea.size.x / 2f;
-        var minX = -movableArea.size.x / 2f;
-        var maxY = movableArea.size.y / 2f;
-        var minY = -movableArea.size.y / 2f;
-
-        pos.x = Mathf.Clamp(pos.x, minX, maxX);
+        //Floor restriction
         pos.y = Mathf.Clamp(pos.y, minY, maxY);
 
         transform.position = pos;
-	}
+
+        // Execute the Jump
+        if(jump)
+        {
+            myRidgidbody.AddRelativeForce(transform.up * jumpPower);
+            jump = false;
+        }
+    }
 }

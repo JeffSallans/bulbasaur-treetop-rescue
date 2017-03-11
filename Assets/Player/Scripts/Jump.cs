@@ -6,7 +6,7 @@ using System.Collections;
 /// 
 /// See - http://answers.unity3d.com/questions/642441/help-with-simple-jump-script.html
 /// </summary>
-[RequireComponent(typeof(Monkey))]
+[RequireComponent(typeof(PlayerData))]
 [RequireComponent(typeof(Rigidbody))]
 public class Jump : MonoBehaviour
 {
@@ -20,21 +20,21 @@ public class Jump : MonoBehaviour
     /// </summary>
     public float jumpPower = 1;
 
-    private Monkey monkey;
+    private PlayerData player;
     private Rigidbody myRidgidbody;
 
     // Use this for initialization
     void Start()
     {
         myRidgidbody = gameObject.GetComponent<Rigidbody>();
-        monkey = gameObject.GetComponent<Monkey>();
+        player = gameObject.GetComponent<PlayerData>();
     }
 
     // Update is called once per frame
     void Update()
     {
         var input = InputManager.getCurrentInputManager()
-            .playerControls[monkey.playerNumber];
+            .playerControls[player.playerNumber];
 
         if (!grounded && myRidgidbody.velocity.y == 0)
         {
