@@ -41,7 +41,7 @@ Material:
   m_Shader: {fileID: 10605, guid: 0000000000000000f000000000000000, type: 0}
   m_ShaderKeywords: 
   m_LightmapFlags: 5
-  m_CustomRenderQueue: 2000
+  m_CustomRenderQueue: -1
   stringTagMap: {}
   m_SavedProperties:
     serializedVersion: 2
@@ -49,25 +49,25 @@ Material:
     - first:
         name: _BumpSpecMap
       second:
-        m_Texture: {fileID: 2800000, guid: fc929e39a86275a45bef44587c51d972, type: 3}
+        m_Texture: {fileID: 2800000, guid: a8f319e74b5b43043832113ef3cd2075, type: 3}
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
     - first:
         name: _MainTex
       second:
-        m_Texture: {fileID: 2800000, guid: 70e1e57fb10216b41b12400217f5e1f3, type: 3}
+        m_Texture: {fileID: 2800000, guid: 1e990cb52c601f943b12edb8e75ef260, type: 3}
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
     - first:
         name: _ShadowTex
       second:
-        m_Texture: {fileID: 2800000, guid: 854e76080adc13c4ab8adbd7bbeedb0b, type: 3}
+        m_Texture: {fileID: 2800000, guid: a22a4e3743ed5e948bd703eff27cbcbd, type: 3}
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
     - first:
         name: _TranslucencyMap
       second:
-        m_Texture: {fileID: 2800000, guid: d94ce31fda506574c8185dd56f755594, type: 3}
+        m_Texture: {fileID: 2800000, guid: 2a76d077f66c684409287b849af51c8f, type: 3}
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
     m_Floats:
@@ -109,7 +109,7 @@ Material:
   m_Shader: {fileID: 10604, guid: 0000000000000000f000000000000000, type: 0}
   m_ShaderKeywords: 
   m_LightmapFlags: 5
-  m_CustomRenderQueue: 2000
+  m_CustomRenderQueue: -1
   stringTagMap: {}
   m_SavedProperties:
     serializedVersion: 2
@@ -117,19 +117,19 @@ Material:
     - first:
         name: _BumpSpecMap
       second:
-        m_Texture: {fileID: 2800000, guid: fc929e39a86275a45bef44587c51d972, type: 3}
+        m_Texture: {fileID: 2800000, guid: a8f319e74b5b43043832113ef3cd2075, type: 3}
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
     - first:
         name: _MainTex
       second:
-        m_Texture: {fileID: 2800000, guid: 70e1e57fb10216b41b12400217f5e1f3, type: 3}
+        m_Texture: {fileID: 2800000, guid: 1e990cb52c601f943b12edb8e75ef260, type: 3}
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
     - first:
         name: _TranslucencyMap
       second:
-        m_Texture: {fileID: 2800000, guid: d94ce31fda506574c8185dd56f755594, type: 3}
+        m_Texture: {fileID: 2800000, guid: 2a76d077f66c684409287b849af51c8f, type: 3}
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
     m_Floats:
@@ -337,7 +337,7 @@ MonoBehaviour:
   m_Name: Tree Data
   m_EditorClassIdentifier: 
   _uniqueID: 253
-  materialHash: 57a66cf0bc67f9b7b8067033de9c5065215482368
+  materialHash: 970e8cddcd68fb1f0ef76b4315f7719f215482368
   root:
     _uniqueID: 1
     seed: 1234
