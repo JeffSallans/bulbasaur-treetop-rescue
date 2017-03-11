@@ -12,6 +12,7 @@ public class FlyController : MonoBehaviour
     public BoxCollider FlyVolume;
 
     public SphereCollider Target;
+    private Vector3 _targetVelocity;
 
     private Rigidbody _body;
 
@@ -35,7 +36,11 @@ public class FlyController : MonoBehaviour
         // TODO: random time intervals for target selection... given constant speed select angle, then
         // distance and clamp distance into the volume?
         // TODO: any good way to ensure it has a reasonable distance to go? See comment above instead for placement.
+        // TODO: maybe targets always on outside edge of volume.
         Target.transform.position = RandomPosition();
+
+        _targetVelocity = Target.transform.position - transform.position;
+        _targetVelocity = Vector3.ClampMagnitude(_targetVelocity, FlySpeed);
     }
 
     // Hadamard product; element-wise multiplcation.
@@ -46,12 +51,9 @@ public class FlyController : MonoBehaviour
 
     // Update is called once per frame
     void Update () {
-		// TODO: banking; maybe targets always on outside edge of volume.
-        var targetVelocity = Target.transform.position - transform.position;
-        Debug.Log(targetVelocity);
+		// TODO: banking
 
-        //_body.velocity = Vector3.Lerp(_body.velocity, targetVelocity * FlySpeed, RotationSpeed);
-        _body.velocity = targetVelocity;
+        _body.velocity = Vector3.Lerp(_body.velocity, _targetVelocity, RotationSpeed);
     }
 
     void OnTriggerEnter(Collider other)

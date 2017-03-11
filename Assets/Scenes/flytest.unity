@@ -288,8 +288,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 24ae24a00e9fff944a279c438a94e9b5, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  FlySpeed: 4
-  RotationSpeed: 0
+  FlySpeed: 10
+  RotationSpeed: 4
   FlyVolume: {fileID: 819215953}
   Target: {fileID: 578379667}
 --- !u!114 &352826336
