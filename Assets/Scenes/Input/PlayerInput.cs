@@ -24,6 +24,20 @@ public interface PlayerInput {
     float getVerticalAxis();
 
     /// <summary>
+    /// Returns the number for the horizontal movement axis.  
+    /// Negative value is left, positive value is right.
+    /// </summary>
+    /// <returns>A number between -1.0f and 1.0f. Resting axis is 0f</returns>
+    float getSecondaryHorizontalAxis();
+
+    /// <summary>
+    /// Returns the number for the vertical movement axis
+    /// Negative value is down, positive value is up.
+    /// </summary>
+    /// <returns>A number between -1.0f and 1.0f. Resting axis is 0f</returns>
+    float getSecondaryVerticalAxis();
+
+    /// <summary>
     /// Determines if the action button was pressed down.
     /// </summary>
     /// <returns>True if the button is pressed for this update(), false if the button is held down or released</returns>

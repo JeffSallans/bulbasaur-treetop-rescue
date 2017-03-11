@@ -20,6 +20,11 @@ public class PlayerData : MonoBehaviour
     public float swingSpeed;
 
     /// <summary>
+    /// How fast the player should swing
+    /// </summary>
+    public float attachForceMag;
+
+    /// <summary>
     /// How fast the player should fall
     /// </summary>
     public float fallSpeed;

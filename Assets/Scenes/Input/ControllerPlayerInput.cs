@@ -47,6 +47,16 @@ public class ControllerPlayerInput : PlayerInput
         return XCI.GetAxis(XboxAxis.LeftStickY, controllerNumber);
     }
 
+    public float getSecondaryHorizontalAxis()
+    {
+        return XCI.GetAxis(XboxAxis.RightStickX, controllerNumber);
+    }
+
+    public float getSecondaryVerticalAxis()
+    {
+        return XCI.GetAxis(XboxAxis.RightStickY, controllerNumber);
+    }
+
     public bool getSecondaryActionPressDown()
     {
         return XCI.GetButtonDown(XboxButton.B, controllerNumber);

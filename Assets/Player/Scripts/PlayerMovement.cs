@@ -26,6 +26,10 @@ public class PlayerMovement : MonoBehaviour {
 
     private PlayerInput playerInput;
 
+    public float camSmoothing = 200;
+
+    bool attached;
+
     /// <summary>
     /// The force of the jump
     /// </summary>
@@ -38,6 +42,8 @@ public class PlayerMovement : MonoBehaviour {
         myRidgidbody = gameObject.GetComponent<Rigidbody>();
         playerInput = InputManager.getCurrentInputManager()
             .playerControls[player.playerNumber];
+
+        attached = false;
     }
 
     // Update is called once per frame
@@ -51,20 +57,37 @@ public class PlayerMovement : MonoBehaviour {
             jump = true;
         }
     }
-    
+
     void FixedUpdate()
     {
 
         // Movement
-        var pos = transform.position;
+        if (!attached)
+        {
+            
+            var inputVector = new Vector3(-playerInput.getVerticalAxis(), 0, playerInput.getHorizontalAxis());
+            var pos = transform.position;
+            if (inputVector.magnitude > 0)
+            {
+                var worldInput = transform.TransformDirection(inputVector);
+                pos += player.walkSpeed * worldInput;
+            }
+            //transform.position = Vector3.Lerp(transform.position, cameraTarget.position, smoothing * Time.deltaTime);
+            
 
-        pos.x += player.walkSpeed * playerInput.getHorizontalAxis();
-        pos.z += player.walkSpeed * playerInput.getVerticalAxis();
+            /*            
+            pos.x += player.walkSpeed * playerInput.getHorizontalAxis();
+            pos.z += player.walkSpeed * playerInput.getVerticalAxis();
+            */
 
-        //Floor restriction
-        pos.y = Mathf.Clamp(pos.y, minY, maxY);
 
-        transform.position = pos;
+            //Floor restriction
+            pos.y = Mathf.Clamp(pos.y, minY, maxY);
+
+            transform.position = pos;
+        }
+
+        transform.Rotate(Vector2.up, playerInput.getSecondaryHorizontalAxis() * Time.deltaTime * camSmoothing);
 
         // Execute the Jump
         if(jump)

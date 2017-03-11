@@ -88,4 +88,14 @@ public class KeyboardPlayerInput : PlayerInput
     {
         throw new NotImplementedException();
     }
+
+    public float getSecondaryHorizontalAxis()
+    {
+        throw new NotImplementedException();
+    }
+
+    public float getSecondaryVerticalAxis()
+    {
+        throw new NotImplementedException();
+    }
 }
