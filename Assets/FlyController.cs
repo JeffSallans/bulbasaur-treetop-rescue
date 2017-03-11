@@ -7,8 +7,8 @@ using Random = UnityEngine.Random;
 public class FlyController : MonoBehaviour
 {
 
-    public float FlySpeed;
-    public float RotationSpeed;
+    public float FlyMaxSpeed;
+    public float FlyAcceleration;
     public BoxCollider FlyVolume;
 
     public SphereCollider Target;
@@ -40,7 +40,7 @@ public class FlyController : MonoBehaviour
         Target.transform.position = RandomPosition();
 
         _targetVelocity = Target.transform.position - transform.position;
-        _targetVelocity = Vector3.ClampMagnitude(_targetVelocity, FlySpeed);
+        _targetVelocity = Vector3.ClampMagnitude(_targetVelocity, FlyMaxSpeed);
     }
 
     // Hadamard product; element-wise multiplcation.
@@ -53,7 +53,7 @@ public class FlyController : MonoBehaviour
     void Update () {
 		// TODO: banking
 
-        _body.velocity = Vector3.Lerp(_body.velocity, _targetVelocity, RotationSpeed);
+        _body.velocity = Vector3.Lerp(_body.velocity, _targetVelocity, FlyAcceleration);
     }
 
     void OnTriggerEnter(Collider other)

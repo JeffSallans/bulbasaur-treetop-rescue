@@ -173,7 +173,7 @@ Transform:
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 336289691}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: -10}
+  m_LocalPosition: {x: 0, y: 17, z: -42}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
@@ -288,8 +288,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 24ae24a00e9fff944a279c438a94e9b5, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  FlySpeed: 10
-  RotationSpeed: 4
+  FlyMaxSpeed: 10
+  FlyAcceleration: 2
   FlyVolume: {fileID: 819215953}
   Target: {fileID: 578379667}
 --- !u!114 &352826336
@@ -444,7 +444,7 @@ Transform:
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 819215952}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 3, y: 30, z: 0}
+  m_LocalPosition: {x: 3, y: 19.3, z: 0}
   m_LocalScale: {x: 50, y: 20, z: 50}
   m_Children: []
   m_Father: {fileID: 0}
