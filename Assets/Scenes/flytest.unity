@@ -104,6 +104,7 @@ GameObject:
   - component: {fileID: 336289693}
   - component: {fileID: 336289692}
   - component: {fileID: 336289697}
+  - component: {fileID: 336289698}
   m_Layer: 0
   m_Name: Main Camera
   m_TagString: MainCamera
@@ -192,6 +193,14 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   Target: {fileID: 352826330}
   MaxRotationSpeed: 90
+--- !u!45 &336289698
+Skybox:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 336289691}
+  m_Enabled: 1
+  m_CustomSkybox: {fileID: 10304, guid: 0000000000000000f000000000000000, type: 0}
 --- !u!1 &352826330
 GameObject:
   m_ObjectHideFlags: 0
@@ -304,7 +313,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   Target: {fileID: 578379665}
-  MaxRotationSpeed: 20
+  MaxRotationSpeed: 40
 --- !u!54 &352826337
 Rigidbody:
   m_ObjectHideFlags: 0
