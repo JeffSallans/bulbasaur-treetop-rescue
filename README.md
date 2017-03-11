@@ -22,8 +22,10 @@ Initial scene Assets/Scenes/start.unity
 
 ## Credits
 
-[Deadlock By Will Bedford](https://soundcloud.com/2-byte/epic-tv-intro)
-[astrosound By AudioJungle](https://soundcloud.com/astrosoundmusic/astrosound-upbeat-electronic)
+[Deadlock by Will Bedford](https://soundcloud.com/2-byte/epic-tv-intro)
+
+[astrosound by AudioJungle](https://soundcloud.com/astrosoundmusic/astrosound-upbeat-electronic)
+
 [Tree Pack 2 by 7 Star](https://www.assetstore.unity3d.com/en/#!/content/67117)
 
 ## License
