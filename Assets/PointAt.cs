@@ -3,13 +3,13 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class PointCameraAt : MonoBehaviour
+public class PointAt : MonoBehaviour
 {
 
     public GameObject Target;
     public float MaxRotationSpeed;
 
-    // Whether the camera has snapped to the initial position;
+    // Whether the object has snapped to point at the initial target position.
     private Boolean _initialSnap;
 
 	// Use this for initialization

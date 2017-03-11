@@ -10,41 +10,48 @@ public class FlyController : MonoBehaviour
     public float FlySpeed;
     public BoxCollider FlyVolume;
 
-    public Boolean SelectedStartPosition = false;
-
-    private Vector3 _minimumBounds;
-    private Vector3 _maxmimumBounds;
-
-    // TODO: random time intervals for target selection... given constant speed select angle, then
-    // distance and clamp distance into the volume?
+    public SphereCollider Target;
 
 	// Use this for initialization
 	void Start ()
 	{
-        // Distance to volume bounds from center for each side.
-	    var edgeFromCenter = FlyVolume.bounds.extents;
-
-        // Set bounds for target selecction.
-        _minimumBounds = FlyVolume.transform.position - edgeFromCenter;
-	    _maxmimumBounds = FlyVolume.transform.position + edgeFromCenter;
-
 	    // Set initial position within the volume.
-	    var positionSource = Random.insideUnitSphere;
-
-        // TODO: less ugly way to do this? component-wise multiplication of edgeFromCenter and positionSource.
-
-	    transform.position = FlyVolume.transform.position + Hadamard(positionSource, edgeFromCenter);
-	    SelectedStartPosition = true;
+	    transform.position = RandomPosition();
+        RandomizeTarget();
 	}
 
+    private Vector3 RandomPosition()
+    {
+        return FlyVolume.transform.position + Hadamard(Random.insideUnitSphere, FlyVolume.bounds.extents);
+    }
+
+    private void RandomizeTarget()
+    {
+        // TODO: random time intervals for target selection... given constant speed select angle, then
+        // distance and clamp distance into the volume?
+        // TODO: any good way to ensure it has a reasonable distance to go? See comment above instead for placement.
+        Target.transform.position = RandomPosition();
+    }
+
     // Hadamard product; element-wise multiplcation.
-    Vector3 Hadamard(Vector3 a, Vector3 b)
+    private static Vector3 Hadamard(Vector3 a, Vector3 b)
     {
         return new Vector3(a.x * b.x, a.y * b.y, a.z * b.z);
     }
 
     // Update is called once per frame
     void Update () {
-		
+		// TODO: banking; maybe targets always on outside edge of volume.
+
 	}
+
+    void OnCollisionEnter(Collision collision)
+    {
+        if (collision.collider != Target)
+        {
+            return;
+        }
+
+        RandomizeTarget();
+    }
 }
