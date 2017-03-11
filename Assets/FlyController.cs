@@ -8,9 +8,12 @@ public class FlyController : MonoBehaviour
 {
 
     public float FlySpeed;
+    public float RotationSpeed;
     public BoxCollider FlyVolume;
 
     public SphereCollider Target;
+
+    private Rigidbody _body;
 
 	// Use this for initialization
 	void Start ()
@@ -18,6 +21,8 @@ public class FlyController : MonoBehaviour
 	    // Set initial position within the volume.
 	    transform.position = RandomPosition();
         RandomizeTarget();
+
+	    _body = GetComponent<Rigidbody>();
 	}
 
     private Vector3 RandomPosition()
@@ -42,12 +47,16 @@ public class FlyController : MonoBehaviour
     // Update is called once per frame
     void Update () {
 		// TODO: banking; maybe targets always on outside edge of volume.
+        var targetVelocity = Target.transform.position - transform.position;
+        Debug.Log(targetVelocity);
 
-	}
+        //_body.velocity = Vector3.Lerp(_body.velocity, targetVelocity * FlySpeed, RotationSpeed);
+        _body.velocity = targetVelocity;
+    }
 
-    void OnCollisionEnter(Collision collision)
+    void OnTriggerEnter(Collider other)
     {
-        if (collision.collider != Target)
+        if (other != Target)
         {
             return;
         }
