@@ -11,8 +11,7 @@ public class FlyController : MonoBehaviour
     public float FlyAcceleration;
     public BoxCollider FlyVolume;
 
-    public SphereCollider Target;
-    private Vector3 _targetVelocity;
+    public Collider Target;
 
     private Rigidbody _body;
 
@@ -28,7 +27,8 @@ public class FlyController : MonoBehaviour
 
     private Vector3 RandomPosition()
     {
-        return FlyVolume.transform.position + Hadamard(Random.insideUnitSphere, FlyVolume.bounds.extents);
+        Vector3 random = new Vector3(Random.Range(-1, 1), Random.Range(-1, 1), Random.Range(-1, 1));
+        return FlyVolume.transform.position + Hadamard(random, FlyVolume.bounds.extents);
     }
 
     private void RandomizeTarget()
@@ -38,9 +38,9 @@ public class FlyController : MonoBehaviour
         // TODO: any good way to ensure it has a reasonable distance to go? See comment above instead for placement.
         // TODO: maybe targets always on outside edge of volume.
         Target.transform.position = RandomPosition();
+        Target.transform.rotation = Quaternion.LookRotation(transform.position - Target.transform.position);
 
-        _targetVelocity = Target.transform.position - transform.position;
-        _targetVelocity = Vector3.ClampMagnitude(_targetVelocity, FlyMaxSpeed);
+        
     }
 
     // Hadamard product; element-wise multiplcation.
@@ -52,8 +52,8 @@ public class FlyController : MonoBehaviour
     // Update is called once per frame
     void Update () {
 		// TODO: banking
-
-        _body.velocity = Vector3.Lerp(_body.velocity, _targetVelocity, FlyAcceleration);
+        Vector3 targetVelocity = Vector3.Normalize(Target.transform.position - transform.position) * FlyMaxSpeed;
+        _body.velocity = Vector3.Lerp(_body.velocity, targetVelocity, FlyAcceleration);
     }
 
     void OnTriggerEnter(Collider other)
