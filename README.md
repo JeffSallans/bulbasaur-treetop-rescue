@@ -30,11 +30,15 @@ Initial scene Assets/Scenes/start.unity
 
 [SkyScrape by 3DMasen](https://www.assetstore.unity3d.com/en/#!/content/5006)
 
+[Stylized Trees by Tom Poon](https://www.assetstore.unity3d.com/en/#!/content/49916)
+
 [Bulbasaur](https://www.sounds-resource.com/nintendo_64/pokemonpuzzleleague/sound/2565/)
 
 [Pikachu](http://www.soundboard.com/sb/sound/298335)
 
 [Fearow](http://downloads.khinsider.com/game-soundtracks/album/pokemon-gameboy-sound-collection/167-fearow.mp3)
+
+[Haunter](http://downloads.khinsider.com/game-soundtracks/album/pokemon-gameboy-sound-collection/240-haunter.mp3)
 
 [Collision](http://soundbible.com/2047-Banana-Slap.html)
 
