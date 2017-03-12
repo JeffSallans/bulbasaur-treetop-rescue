@@ -82,7 +82,7 @@ public class PlayerMovement : MonoBehaviour {
 
 
             //Floor restriction
-            pos.y = Mathf.Clamp(pos.y, minY, maxY);
+            //pos.y = Mathf.Clamp(pos.y, minY, maxY);
 
             transform.position = pos;
         }
