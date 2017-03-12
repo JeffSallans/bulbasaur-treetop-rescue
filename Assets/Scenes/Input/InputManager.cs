@@ -17,8 +17,11 @@ public class InputManager : MonoBehaviour {
     /// </summary>
     public List<string> playerControlsName;
 
+
+    public bool setupDefaultController = false;
+
     // Use this for initialization
-    void Start () {
+    void Awake () {
         playerControls = new Dictionary<int, PlayerInput>();
         playerControlsName = new List<string>();
 
@@ -32,6 +35,11 @@ public class InputManager : MonoBehaviour {
 
         //Assign name
         gameObject.name = OBJECT_NAME;
+
+        if (setupDefaultController)
+        {
+            assignPlayerInput(new ControllerPlayerInput(1));
+        }
     }
 
     /// <summary>
