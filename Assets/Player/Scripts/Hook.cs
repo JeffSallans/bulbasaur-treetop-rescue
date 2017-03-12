@@ -24,10 +24,14 @@ public class Hook : MonoBehaviour
     Ray shootRay = new Ray();
     RaycastHit shootHit;
     int hookMask;
-    int RayLength = 100;
+    int RayLength = 50;
     //public Rigidbody vineRigidbody;
 
     public LineRenderer lineRenderer;
+
+    Ray[] rays;
+    LineRenderer[] lineRenderers;
+    Vector3[] rayOffsets = new Vector3[] { Vector3.zero, new Vector3(.1f, 0, 0), new Vector3(-.1f, 0, 0) };
 
     // Use this for initialization
     void Start()
@@ -35,6 +39,16 @@ public class Hook : MonoBehaviour
         myRidgidbody = gameObject.GetComponent<Rigidbody>();
         player = gameObject.GetComponent<PlayerData>();
         hookMask = LayerMask.GetMask("Hook");
+
+        var rayCount = rayOffsets.Length;
+        rays = new Ray[rayCount];
+        lineRenderers = new LineRenderer[rayCount];
+
+        for (int i = 0; i < rayCount; i++)
+        {
+            lineRenderers[i] = Object.Instantiate<LineRenderer>(lineRenderer);
+            rays[i] = new Ray();
+        }
     }
 
     // Update is called once per frame
@@ -58,18 +72,24 @@ public class Hook : MonoBehaviour
             //Debug.Log(myRidgidbody.velocity.normalized.ToString());
             //myRidgidbody.AddForce(myRidgidbody.velocity.normalized * Time.deltaTime * player.attachForceMag);
 
-            shootRay.origin = camera.transform.position;
-            shootRay.direction = camera.transform.forward;
-
-            lineRenderer.SetPosition(0, shootRay.origin);
-            lineRenderer.SetPosition(1, shootRay.direction * RayLength);
-
-
-            if (Physics.Raycast(shootRay, out shootHit, RayLength, hookMask))
+            for (int i = 0; i < rays.Length; i++)
             {
-                shootHit.transform.GetComponent<FixedJoint>().connectedBody = myRidgidbody;
-                //fixedJoint.connectedBody = myRidgidbody;
+                Ray ray = rays[i];
+                ray.origin = camera.transform.position;
+                ray.direction = camera.transform.forward + rayOffsets[i];
+
+                lineRenderers[i].SetPosition(0, ray.origin);
+                lineRenderers[i].SetPosition(1, ray.direction * RayLength);
+
+                if (Physics.Raycast(ray, out shootHit, RayLength, hookMask))
+                {
+                    shootHit.transform.GetComponent<FixedJoint>().connectedBody = myRidgidbody;
+                    break;
+                    //fixedJoint.connectedBody = myRidgidbody;
+                }
             }
+
+
 
 
             //lineRenderer.enabled = true;
