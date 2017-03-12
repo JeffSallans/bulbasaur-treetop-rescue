@@ -20,7 +20,7 @@ public class SceneNavigation : MonoBehaviour {
 
     public void loadInput()
     {
-        Application.LoadLevel("setControls");
+        Application.LoadLevel("pendulum");
     }
 
     public void loadMatch()
