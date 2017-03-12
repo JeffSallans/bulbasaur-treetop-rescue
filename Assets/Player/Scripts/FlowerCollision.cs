@@ -20,6 +20,16 @@ public class FlowerCollision : MonoBehaviour
         {
             other.GetComponent<SpringJoint>().connectedBody = playerData.grappleObject.GetComponent<Rigidbody>();
             playerData.gameObject.GetComponent<FollowObject>().enabled = true;
+            var playerRigidbody = playerData.gameObject.GetComponent<Rigidbody>();
+            var grappleRigidbody = other.gameObject.GetComponent<Rigidbody>();
+
+            grappleRigidbody.velocity = playerRigidbody.velocity;
+            grappleRigidbody.angularVelocity = playerRigidbody.angularVelocity;
+
+            grappleRigidbody.isKinematic = false;
+            playerRigidbody.isKinematic = true;
+            playerData.gameObject.GetComponent<Collider>().enabled = false;
+
             playerData.swingPoint = other.gameObject;
         }
     }

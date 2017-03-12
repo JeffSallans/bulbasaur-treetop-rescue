@@ -47,7 +47,21 @@ public class Hook : MonoBehaviour
             if (player.isSwinging) {
                 player.swingPoint.GetComponent<SpringJoint>().connectedBody = null;
                 player.gameObject.GetComponent<FollowObject>().enabled = false;
+
+                var playerRigidbody = player.gameObject.GetComponent<Rigidbody>();
+                var grappleRigidbody = player.swingPoint.gameObject.GetComponent<Rigidbody>();
+
+
+                playerRigidbody.velocity = grappleRigidbody.velocity;
+                playerRigidbody.angularVelocity = grappleRigidbody.angularVelocity;
+
+                playerRigidbody.isKinematic = false;
+                grappleRigidbody.isKinematic = true;
+                player.gameObject.GetComponent<Collider>().enabled = true;
+
                 player.swingPoint = null;
+
+                // Release boost
             }
         }
     }
