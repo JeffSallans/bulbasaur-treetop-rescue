@@ -38,6 +38,8 @@ Initial scene Assets/Scenes/start.unity
 
 [Fearow](http://downloads.khinsider.com/game-soundtracks/album/pokemon-gameboy-sound-collection/167-fearow.mp3)
 
+[Haunter](http://downloads.khinsider.com/game-soundtracks/album/pokemon-gameboy-sound-collection/240-haunter.mp3)
+
 [Collision](http://soundbible.com/2047-Banana-Slap.html)
 
 [Wind](http://soundbible.com/1247-Wind.html)
