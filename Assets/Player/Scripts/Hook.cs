@@ -14,6 +14,8 @@ public class Hook : MonoBehaviour
     public GameObject crossHairs;
     public GameObject camera;
 
+    public Vector3 releaseBoostConstant = new Vector3(5,5,0); 
+
     Ray shootRay = new Ray();
     RaycastHit shootHit;
     int hookMask;
@@ -52,8 +54,7 @@ public class Hook : MonoBehaviour
                 var grappleRigidbody = player.swingPoint.gameObject.GetComponent<Rigidbody>();
 
 
-                playerRigidbody.velocity = grappleRigidbody.velocity;
-                playerRigidbody.angularVelocity = grappleRigidbody.angularVelocity;
+                //playerRigidbody.velocity = grappleRigidbody.velocity.magnitude * playerRigidbody.velocity.normalized;
 
                 playerRigidbody.isKinematic = false;
                 grappleRigidbody.isKinematic = true;
@@ -62,6 +63,8 @@ public class Hook : MonoBehaviour
                 player.swingPoint = null;
 
                 // Release boost
+                playerRigidbody.AddRelativeForce(releaseBoostConstant.y * Vector3.up);
+                //playerRigidbody.AddRelativeForce(releaseBoostConstant.x * Vector3.left);
             }
         }
     }

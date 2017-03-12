@@ -32,10 +32,11 @@ public class CameraFollow : MonoBehaviour
 
         // Smoothly interpolate between the camera's current position and it's target position.
         transform.position = Vector3.Lerp(transform.position, cameraTarget.position, smoothing * Time.deltaTime);
+        transform.position = new Vector3(transform.position.x, cameraTarget.position.y, transform.position.z);
 
         transform.LookAt(target.transform);
 
-        var hitBottomClamp = cameraTarget.transform.position.y < 0 && playerInput.getSecondaryVerticalAxis() < 0;
+        var hitBottomClamp = cameraTarget.transform.position.y < -2 && playerInput.getSecondaryVerticalAxis() < 0;
         var hitTopClamp = cameraTarget.transform.position.y > 5 && playerInput.getSecondaryVerticalAxis() > 0;
 
         if (!hitBottomClamp && !hitTopClamp) {

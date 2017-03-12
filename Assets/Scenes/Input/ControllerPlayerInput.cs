@@ -59,11 +59,11 @@ public class ControllerPlayerInput : PlayerInput
 
     public bool getSecondaryActionPressDown()
     {
-        return XCI.GetButtonDown(XboxButton.B, controllerNumber);
+        return XCI.GetButtonDown(XboxButton.RightBumper, controllerNumber);
     }
 
     public bool getSecondaryActionHold()
     {
-        return XCI.GetButton(XboxButton.B, controllerNumber);
+        return XCI.GetButton(XboxButton.RightBumper, controllerNumber);
     }
 }
