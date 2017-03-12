@@ -76,17 +76,18 @@ public class PlayerMovement : MonoBehaviour {
             }
             
             transform.position = pos;
+            
+            // Execute the Jump
+            if(jump)
+            {
+                myRidgidbody.AddRelativeForce(transform.up * jumpPower);
+                jump = false;
+            }
         }
         else
         {
             //myRidgidbody.AddRelativeForce(inputVector * swingingPower);
         }
 
-        // Execute the Jump
-        if(jump)
-        {
-            myRidgidbody.AddRelativeForce(transform.up * jumpPower);
-            jump = false;
-        }
     }
 }
