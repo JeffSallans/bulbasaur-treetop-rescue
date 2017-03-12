@@ -707,6 +707,18 @@ Prefab:
       propertyPath: m_LocalEulerAnglesHint.y
       value: 90
       objectReference: {fileID: 0}
+    - target: {fileID: 9500000, guid: b047ff7cec07d22428f920e0d8a85ad8, type: 3}
+      propertyPath: m_Controller
+      value: 
+      objectReference: {fileID: 9100000, guid: e2c44cdafdc50694b8f8c201b681dff8, type: 2}
+    - target: {fileID: 400010, guid: b047ff7cec07d22428f920e0d8a85ad8, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 100044, guid: b047ff7cec07d22428f920e0d8a85ad8, type: 3}
+      propertyPath: m_Name
+      value: Left_Rear_Leg
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: b047ff7cec07d22428f920e0d8a85ad8, type: 3}
   m_IsPrefabParent: 0

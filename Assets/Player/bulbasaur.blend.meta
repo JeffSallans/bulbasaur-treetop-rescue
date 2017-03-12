@@ -23,6 +23,17 @@ ModelImporter:
     100030: Bone_011
     100032: //RootNode
     100034: bulbasaur
+    100036: Butt
+    100038: Head
+    100040: Left_Front_Foot
+    100042: Left_Front_Leg
+    100044: Left_Read_Leg
+    100046: Left_Rear_Foot
+    100048: Pod
+    100050: Right_Front_Foot
+    100052: Right_Front_Leg
+    100054: Right_Rear_Foot
+    100056: Right_Rear_Leg
     400000: Armature
     400002: body
     400004: body_MeshPart0
@@ -41,6 +52,17 @@ ModelImporter:
     400030: Bone_011
     400032: bulbasaur
     400034: //RootNode
+    400036: Butt
+    400038: Head
+    400040: Left_Front_Foot
+    400042: Left_Front_Leg
+    400044: Left_Read_Leg
+    400046: Left_Rear_Foot
+    400048: Pod
+    400050: Right_Front_Foot
+    400052: Right_Front_Leg
+    400054: Right_Rear_Foot
+    400056: Right_Rear_Leg
     4300000: body_MeshPart0
     4300002: body_MeshPart1
     4300004: body_MeshPart2
@@ -69,7 +91,71 @@ ModelImporter:
     animationScaleError: 0.5
     animationWrapMode: 0
     extraExposedTransformPaths: []
-    clipAnimations: []
+    clipAnimations:
+    - serializedVersion: 16
+      name: Default Take
+      takeName: Default Take
+      firstFrame: 0
+      lastFrame: 249
+      wrapMode: 0
+      orientationOffsetY: 0
+      level: 0
+      cycleOffset: 0
+      loop: 0
+      hasAdditiveReferencePose: 0
+      loopTime: 0
+      loopBlend: 0
+      loopBlendOrientation: 0
+      loopBlendPositionY: 0
+      loopBlendPositionXZ: 0
+      keepOriginalOrientation: 0
+      keepOriginalPositionY: 1
+      keepOriginalPositionXZ: 0
+      heightFromFeet: 0
+      mirror: 0
+      bodyMask: 01000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000
+      curves: []
+      events: []
+      transformMask:
+      - path: 
+        weight: 1
+      - path: Armature
+        weight: 1
+      - path: Armature/Bone
+        weight: 1
+      - path: Armature/Bone_001
+        weight: 1
+      - path: Armature/Bone_001/Bone_006
+        weight: 1
+      - path: Armature/Bone_002
+        weight: 1
+      - path: Armature/Bone_002/Bone_003
+        weight: 1
+      - path: Armature/Bone_004
+        weight: 1
+      - path: Armature/Bone_004/Bone_005
+        weight: 1
+      - path: Armature/Bone_007
+        weight: 1
+      - path: Armature/Bone_007/Bone_008
+        weight: 1
+      - path: Armature/Bone_009
+        weight: 1
+      - path: Armature/Bone_009/Bone_011
+        weight: 1
+      - path: body
+        weight: 1
+      - path: body/body_MeshPart0
+        weight: 1
+      - path: body/body_MeshPart1
+        weight: 1
+      - path: body/body_MeshPart2
+        weight: 1
+      - path: bulbasaur
+        weight: 1
+      maskType: 3
+      maskSource: {instanceID: 0}
+      additiveReferencePoseFrame: 0
     isReadable: 1
   meshes:
     lODScreenPercentages: []
