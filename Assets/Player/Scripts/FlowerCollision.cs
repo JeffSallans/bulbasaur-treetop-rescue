@@ -2,12 +2,24 @@
 using System.Collections.Generic;
 using UnityEngine;
 
+/// <summary>
+/// Sets the swing point if a collision was found
+/// </summary>
+[RequireComponent(typeof(PlayerData))]
 public class FlowerCollision : MonoBehaviour
 {
-    public Rigidbody myRidgidbody;
+    public PlayerData playerData;
+
+    // Use this for initialization
+    void Start()
+    {
+    }
 
     void OnTriggerEnter(Collider other)
     {
-        other.GetComponent<FixedJoint>().connectedBody = myRidgidbody;
+        if (!playerData.isSwinging)
+        {
+            playerData.swingPoint = other.gameObject;
+        }
     }
 }

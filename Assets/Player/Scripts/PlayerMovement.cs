@@ -28,12 +28,15 @@ public class PlayerMovement : MonoBehaviour {
 
     public float camSmoothing = 200;
 
-    bool attached;
-
     /// <summary>
     /// The force of the jump
     /// </summary>
     public float jumpPower;
+
+    /// <summary>
+    /// The force of the swinging DI
+    /// </summary>
+    public float swingingPower;
 
     // Use this for initialization
     void Start()
@@ -42,8 +45,6 @@ public class PlayerMovement : MonoBehaviour {
         myRidgidbody = gameObject.GetComponent<Rigidbody>();
         playerInput = InputManager.getCurrentInputManager()
             .playerControls[player.playerNumber];
-
-        attached = false;
     }
 
     // Update is called once per frame
@@ -60,34 +61,26 @@ public class PlayerMovement : MonoBehaviour {
 
     void FixedUpdate()
     {
+        transform.Rotate(Vector2.up, playerInput.getSecondaryHorizontalAxis() * Time.deltaTime * camSmoothing);
+
+        var inputVector = new Vector3(-playerInput.getVerticalAxis(), 0, playerInput.getHorizontalAxis());
 
         // Movement
-        if (!attached)
+        if (!player.isSwinging)
         {
-            
-            var inputVector = new Vector3(-playerInput.getVerticalAxis(), 0, playerInput.getHorizontalAxis());
             var pos = transform.position;
             if (inputVector.magnitude > 0)
             {
                 var worldInput = transform.TransformDirection(inputVector);
                 pos += player.walkSpeed * worldInput;
             }
-            //transform.position = Vector3.Lerp(transform.position, cameraTarget.position, smoothing * Time.deltaTime);
             
-
-            /*            
-            pos.x += player.walkSpeed * playerInput.getHorizontalAxis();
-            pos.z += player.walkSpeed * playerInput.getVerticalAxis();
-            */
-
-
-            //Floor restriction
-            //pos.y = Mathf.Clamp(pos.y, minY, maxY);
-
             transform.position = pos;
         }
-
-        transform.Rotate(Vector2.up, playerInput.getSecondaryHorizontalAxis() * Time.deltaTime * camSmoothing);
+        else
+        {
+            myRidgidbody.AddRelativeForce(inputVector * swingingPower);
+        }
 
         // Execute the Jump
         if(jump)

@@ -29,6 +29,32 @@ public class PlayerData : MonoBehaviour
     /// </summary>
     public float fallSpeed;
 
+    /// <summary>
+    /// True when the user is swinging
+    /// </summary>
+    public bool isSwinging
+    {
+        get
+        {
+            return (swingPoint != null);
+        }
+    }
+
+    /// <summary>
+    /// The target game object to swing around
+    /// </summary>
+    public GameObject swingPoint;
+
+    /// <summary>
+    /// Weight of the player
+    /// </summary>
+    public float mass = 10;
+
+    /// <summary>
+    /// Gravity constant of the game
+    /// </summary>
+    public float gravity = 9.8f;
+
     // Use this for initialization
     void Start()
     {
