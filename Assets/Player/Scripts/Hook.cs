@@ -27,11 +27,6 @@ public class Hook : MonoBehaviour
     int RayLength = 50;
     //public Rigidbody vineRigidbody;
 
-    public LineRenderer lineRenderer;
-
-    Ray[] rays;
-    LineRenderer[] lineRenderers;
-    Vector3[] rayOffsets = new Vector3[] { Vector3.zero, new Vector3(.1f, 0, 0), new Vector3(-.1f, 0, 0) };
 
     // Use this for initialization
     void Start()
@@ -40,15 +35,6 @@ public class Hook : MonoBehaviour
         player = gameObject.GetComponent<PlayerData>();
         hookMask = LayerMask.GetMask("Hook");
 
-        var rayCount = rayOffsets.Length;
-        rays = new Ray[rayCount];
-        lineRenderers = new LineRenderer[rayCount];
-
-        for (int i = 0; i < rayCount; i++)
-        {
-            lineRenderers[i] = Object.Instantiate<LineRenderer>(lineRenderer);
-            rays[i] = new Ray();
-        }
     }
 
     // Update is called once per frame
@@ -72,25 +58,16 @@ public class Hook : MonoBehaviour
             //Debug.Log(myRidgidbody.velocity.normalized.ToString());
             //myRidgidbody.AddForce(myRidgidbody.velocity.normalized * Time.deltaTime * player.attachForceMag);
 
-            for (int i = 0; i < rays.Length; i++)
+            camera.GetComponentInChildren<CapsuleCollider>().enabled = true;
+
+            //shootHit.transform.GetComponent<FixedJoint>().connectedBody = myRidgidbody;
+
+            /*
+            if (Physics.Raycast(ray, out shootHit, RayLength, hookMask))
             {
-                Ray ray = rays[i];
-                ray.origin = camera.transform.position;
-                ray.direction = camera.transform.forward + rayOffsets[i];
-
-                lineRenderers[i].SetPosition(0, ray.origin);
-                lineRenderers[i].SetPosition(1, ray.direction * RayLength);
-
-                if (Physics.Raycast(ray, out shootHit, RayLength, hookMask))
-                {
-                    shootHit.transform.GetComponent<FixedJoint>().connectedBody = myRidgidbody;
-                    break;
-                    //fixedJoint.connectedBody = myRidgidbody;
-                }
-            }
-
-
-
+                shootHit.transform.GetComponent<FixedJoint>().connectedBody = myRidgidbody;
+                //fixedJoint.connectedBody = myRidgidbody;
+            }*/
 
             //lineRenderer.enabled = true;
             //lineRenderer.SetPosition(0, new Vector3(gameObject.transform.position.x, gameObject.transform.position.y, gameObject.transform.position.z));
@@ -114,9 +91,9 @@ public class Hook : MonoBehaviour
         // Remove the hook on keyup
         else if (!input.getSecondaryActionHold())
         {
-            //Destroy(currentHindgeJoint);
-            //Destroy(vine);
-            fixedJoint.connectedBody = null;
+            camera.GetComponentInChildren<CapsuleCollider>().enabled = false;
+            if (fixedJoint.connectedBody != null)
+                fixedJoint.connectedBody = null;
         }
     }
 }
