@@ -64,7 +64,9 @@ public class Hook : MonoBehaviour
 
                 // Release boost
                 playerRigidbody.AddRelativeForce(releaseBoostConstant.y * Vector3.up);
-                //playerRigidbody.AddRelativeForce(releaseBoostConstant.x * Vector3.left);
+                playerRigidbody.AddRelativeForce(releaseBoostConstant.x * Vector3.left);
+
+                playerRigidbody.angularVelocity = new Vector3();
             }
         }
     }
