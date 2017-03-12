@@ -55,6 +55,11 @@ public class PlayerData : MonoBehaviour
     /// </summary>
     public float gravity = 9.8f;
 
+    /// <summary>
+    /// Reference of grapple movement hack
+    /// </summary>
+    public GameObject grappleObject;
+
     // Use this for initialization
     void Start()
     {

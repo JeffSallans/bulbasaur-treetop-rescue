@@ -7,11 +7,9 @@ using System.Collections;
 /// See - https://unity3d.com/learn/tutorials/topics/physics/physics-joints
 /// </summary>
 [RequireComponent(typeof(PlayerData))]
-[RequireComponent(typeof(Rigidbody))]
 public class Hook : MonoBehaviour
 {
     private PlayerData player;
-    private Rigidbody myRidgidbody;
 
     public GameObject crossHairs;
     public GameObject camera;
@@ -26,7 +24,6 @@ public class Hook : MonoBehaviour
     // Use this for initialization
     void Start()
     {
-        myRidgidbody = gameObject.GetComponent<Rigidbody>();
         player = gameObject.GetComponent<PlayerData>();
         hookMask = LayerMask.GetMask("Hook");
 
@@ -48,6 +45,8 @@ public class Hook : MonoBehaviour
         {
             camera.GetComponentInChildren<CapsuleCollider>().enabled = false;
             if (player.isSwinging) {
+                player.swingPoint.GetComponent<SpringJoint>().connectedBody = null;
+                player.gameObject.GetComponent<FollowObject>().enabled = false;
                 player.swingPoint = null;
             }
         }

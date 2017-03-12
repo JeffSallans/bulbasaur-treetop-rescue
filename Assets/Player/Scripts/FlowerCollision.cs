@@ -5,7 +5,6 @@ using UnityEngine;
 /// <summary>
 /// Sets the swing point if a collision was found
 /// </summary>
-[RequireComponent(typeof(PlayerData))]
 public class FlowerCollision : MonoBehaviour
 {
     public PlayerData playerData;
@@ -19,6 +18,8 @@ public class FlowerCollision : MonoBehaviour
     {
         if (!playerData.isSwinging)
         {
+            other.GetComponent<SpringJoint>().connectedBody = playerData.grappleObject.GetComponent<Rigidbody>();
+            playerData.gameObject.GetComponent<FollowObject>().enabled = true;
             playerData.swingPoint = other.gameObject;
         }
     }

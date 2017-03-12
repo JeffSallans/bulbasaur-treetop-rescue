@@ -79,7 +79,7 @@ public class PlayerMovement : MonoBehaviour {
         }
         else
         {
-            myRidgidbody.AddRelativeForce(inputVector * swingingPower);
+            //myRidgidbody.AddRelativeForce(inputVector * swingingPower);
         }
 
         // Execute the Jump
